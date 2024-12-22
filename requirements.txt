@@ -1,0 +1,10 @@
+fastapi[all]
+requests
+dramatiq[redis]
+boto3
+broadcaster[redis]
+python-dotenv
+sqlalchemy[asyncio, mypy]
+aiosqlite
+replicate
+pydantic-settings==2.2.1
