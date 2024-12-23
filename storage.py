@@ -1,6 +1,11 @@
 import boto3
 import os
 
+from config import BaseConfig
+
+
+settings = BaseConfig()
+
 
 class Storage:
 
@@ -10,7 +15,14 @@ class Storage:
             storage_bucket: str,
             object_name: str | None = None
     ):
-        s3_client = boto3.client('s3')
+        # s3_client = boto3.client('s3')
+
+        s3_client = boto3.client(
+            's3',
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            region_name=settings.AWS_DEFAULT_REGION,
+        )
 
         try:
             # upload the bytes
