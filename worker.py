@@ -111,8 +111,6 @@ def text_to_image_task(image_id: int):
         file_name
     )
 
-    send_image_message(f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}")
-
     update_file_name(image, file_name)
 
     update_progress(image)
@@ -121,5 +119,7 @@ def text_to_image_task(image_id: int):
     webhook_url = "https://fastapi-image-generator.onrender.com/webhook"
 
     requests.post(webhook_url, json=result)
+
+    send_image_message(f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}")
 
 
