@@ -15,6 +15,7 @@ class BaseConfig(BaseSettings):
     AWS_ACCESS_KEY_ID: Optional[str]
     AWS_SECRET_ACCESS_KEY: Optional[str]
     AWS_DEFAULT_REGION: Optional[str]
+    REPLICATE_API_TOKEN: Optional[str]
 
     model_config = SettingsConfigDict(
         env_file=".env", extra="ignore"

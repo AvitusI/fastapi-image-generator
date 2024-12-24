@@ -17,8 +17,13 @@ from database import async_session_maker
 from storage import Storage
 from config import BaseConfig
 
+load_dotenv()
+
 
 settings = BaseConfig()
+
+REPLICATE_API_TOKEN = settings.REPLICATE_API_TOKEN
+
 
 class TextToImageMiddleware(Middleware):
     def __init__(self) -> None:

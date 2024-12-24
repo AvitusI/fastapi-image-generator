@@ -4,6 +4,15 @@ import boto3
 import json
 import replicate
 from typing import Callable, Any
+from dotenv import load_dotenv
+
+from config import BaseConfig
+
+load_dotenv()
+
+settings = BaseConfig()
+
+REPLICATE_API_TOKEN = settings.REPLICATE_API_TOKEN
 
 class TextToImage:
 
@@ -20,7 +29,7 @@ class TextToImage:
     ) -> bytes | None:
         output = replicate.run(
             "harnessing-ai-project/mwfz-flux:129947ef1820a641453ca09ff050cf832dac392737b3c9cae703bb18dfb846fa",
-            input={"prompt": f"MWFZ, {prompt}"}
+            input={"prompt": f"{prompt}"}
         )
 
         if isinstance(output, list) and len(output) > 0:
