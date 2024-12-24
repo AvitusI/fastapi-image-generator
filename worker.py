@@ -81,7 +81,7 @@ def update_file_name(image: GeneratedImage, file_name: str):
 
 def send_image_message(message: str):
     async def _send_image_message(message: str):
-        uri = "ws://localhost:8000/ws"
+        uri = "wss://https://fastapi-image-generator.onrender.com/ws"
         async with websockets.connect(uri) as websocket:
             await websocket.send(message)
             print("Message sent from send image coroutine worker")
@@ -118,7 +118,7 @@ def text_to_image_task(image_id: int):
     update_progress(image)
 
     result = { 'data': 'great' }
-    webhook_url = "http://localhost:8000/webhook"
+    webhook_url = "https://fastapi-image-generator.onrender.com/webhook"
 
     requests.post(webhook_url, json=result)
 
