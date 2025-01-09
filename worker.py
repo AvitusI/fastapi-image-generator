@@ -124,4 +124,6 @@ def text_to_image_task(image_id: int):
 
     send_image_message(f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}")
 
+    # https://s3.us-west-2.amazonaws.com/avytechs.generated-images/b2eb116a-7d6d-4e03-91af-47b332792f97.jpg
+
 
