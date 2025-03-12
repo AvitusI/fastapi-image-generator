@@ -8,3 +8,8 @@ sqlalchemy[asyncio, mypy]
 aiosqlite
 replicate
 pydantic-settings==2.2.1
+cohere
+
+langchain
+langchain-community
+langchain-aws

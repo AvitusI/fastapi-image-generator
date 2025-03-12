@@ -5,8 +5,10 @@ import json
 import replicate
 from typing import Callable, Any
 from dotenv import load_dotenv
+import requests
 
 from config import BaseConfig
+from generative import get_number_prompt
 
 load_dotenv()
 
@@ -33,8 +35,56 @@ class TextToImage:
                 return 'harnessing-ai-project/usakif:f9cdcbbf8133f1e51bb7c6012c14e0e9015d79c41e395aa4eecfbdf60a9c8515'
             case 'usakim': # mosquito, circular pictures
                 return 'harnessing-ai-project/usakim:8a035481dabdf43ad6a88d9b9a66542bf860015385e2973f5dd439b41e9270fd'
+            case 'kazanil':
+                return 'harnessing-ai-project/kazanil:27e1a4eaa3df9bd2c9c52ca86c80b25663d3a33bea56cb63a4df41fa53866b8e'
+            case 'kazanis':
+                return 'harnessing-ai-project/kazanis:b9ad953ec02ad90cdf8947ea6179779d3938e36a486c0a12512b948e55140843'
             case 'mwfz':
                 return 'harnessing-ai-project/mwfz-flux:129947ef1820a641453ca09ff050cf832dac392737b3c9cae703bb18dfb846fa'
+            case 'namba':
+                return 'harnessing-ai-project/mwfz-flux:129947ef1820a641453ca09ff050cf832dac392737b3c9cae703bb18dfb846fa'
+            case 'vpmmes':
+                return 'harnessing-ai-project/vpmmes:f27290c0d1076d0c04d67062c5f918cd9bcf2a5bf29495bb34bbd078c0a9aa8e'
+            case 'umbomrab':
+                return 'harnessing-ai-project/umbomrab:f4c21a0a4fa5f6dc8a1b09ee3f18921a2b6be20e9b66fb825c5d8f3b1cd8bfba'
+            case 'umbomstat':
+                return 'harnessing-ai-project/umbomstat:ddcc3508c838ecc0f7d83848dafe979f9a216b1d4697c28638864faf9fcc2801'
+            case 'umboptt':
+                return 'harnessing-ai-project/umboptt:98fc502472cf639fb8bb7743fd2fdf5664a4a4b329b25b744beb53e9219cf6d6'
+
+            # money urls
+            case 'hamsinifr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273376/money/50-front_con1qh.jpg'
+            case 'hamsinibk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273376/money/50-back_iaimkb.jpg'
+            case 'miafr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273377/money/100-front_km6ktl.jpg'
+            case 'miabk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273376/money/100-back_eamkn6.jpg'
+            case 'miambilifr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273376/money/200-front_mohmlp.jpg'
+            case 'miambilibk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273376/money/200-back_u1faty.jpg'
+            case 'miatanofr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273377/money/500-front_dqqybe.jpg'
+            case 'miatanobk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273377/money/500-back_hl2wax.jpg'
+            case 'elfufr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273384/money/1000-front_bm8zew.jpg'
+            case 'elfubk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273379/money/1000-back_ephwow.jpg'
+            case 'elfumbilifr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273379/money/2000-front_cvs3sx.jpg'
+            case 'elfumbilibk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273379/money/2000-back_yoko8s.jpg'
+            case 'elfutanofr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273385/money/5000-front_rsqewd.jpg'
+            case 'elfutanobk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273379/money/5000-back_xvnok8.jpg'
+            case 'elfukumifr':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273380/money/10000-front_jqa3yd.jpg'
+            case 'elfukumibk':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273380/money/10000-back_qnzcbp.jpg'
     
     def generate(
             self,
@@ -44,7 +94,7 @@ class TextToImage:
             num_steps = 80,
             callback: Callable[[int, int, Any], None] | None = None
     ) -> bytes | None:
-        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'dmaa', 'usakir', 'usakim', 'usakif']
+        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
         words_in_prompt = [word.lower() for word in prompt.split()]
 
         trigger_word = [word for word in trigger_words if word in words_in_prompt]
@@ -54,17 +104,29 @@ class TextToImage:
             img_model = self.get_image_model(trigger_word[0])
         else:
             img_model = "harnessing-ai-project/mwfz-flux:129947ef1820a641453ca09ff050cf832dac392737b3c9cae703bb18dfb846fa"
-        
-        output = replicate.run(
-            img_model,
-            input={"prompt": f"{prompt}"}
-        )
 
-        if isinstance(output, list) and len(output) > 0:
-            file_output = output[0]
+        money_words = ['hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk']
 
-            image_data = file_output.read()
+        print('trigger_w', trigger_word)
 
-            return image_data
+        if trigger_word[0] not in money_words:
+          #  prompt = get_number_prompt(prompt) if (trigger_word[0] == "namba") else prompt
+            print('prompt near replicate', prompt)
+
+            output = replicate.run(
+                img_model,
+                input={"prompt": f"{prompt}"}
+            )
+
+            if isinstance(output, list) and len(output) > 0:
+                file_output = output[0]
+
+                image_data = file_output.read()
+
+                return image_data
+        elif trigger_word[0] in money_words:
+            response = requests.get(img_model, stream=True)
+            img_data = response.content
+            return img_data
         
         return None

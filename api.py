@@ -3,6 +3,9 @@ import contextlib
 import json
 import os
 from dotenv import load_dotenv
+from typing import List
+import pprint
+import re
 
 from broadcaster import Broadcast
 from dramatiq import Message
@@ -19,6 +22,8 @@ from database import get_async_session, create_all_tables
 from models import GeneratedImage
 from schemas import MessageEvent
 from config import BaseConfig
+from generative import generate_image_prompt, get_number_prompt
+
 
 settings = BaseConfig()
 
@@ -78,20 +83,42 @@ async def get_generated_image_or_404(
 
 @app.post(
     "/generated-images",
-    response_model=schemas.GeneratedImageRead,
+ #   response_model=schemas.GeneratedImageRead,
     status_code=status.HTTP_201_CREATED
 )
 async def create_generated_image(
     generated_image_create: schemas.GeneratedImageCreate,
     session: AsyncSession = Depends(get_async_session)
-) -> GeneratedImage:
-    image = GeneratedImage(**generated_image_create.model_dump())
-    session.add(image)
-    await session.commit()
+):
+    
+    prompt = generated_image_create.model_dump().get("prompt")
 
-    worker.text_to_image_task.send(image.id)
+    prompts = await generate_image_prompt(prompt)
+    print(prompts)
 
-    return image
+    # special case for "namba" topic
+    num_prompt = prompts[0]
+    word = "namba"
+    if word in num_prompt:
+        print('num_prompt', num_prompt)
+        prompts = get_number_prompt(num_prompt)
+
+    for prompt in prompts:
+        print(prompt)
+
+    image_results = []
+
+    for prompt in prompts:
+        image = GeneratedImage(prompt=prompt, num_steps=50)
+        session.add(image)
+        await session.commit()
+
+        #image_results.append(image)
+        print(image.id)
+
+        worker.text_to_image_task.send(image.id)
+
+    return image_results
 
 # check if the generation is done
 @app.get(

@@ -16,6 +16,7 @@ class BaseConfig(BaseSettings):
     AWS_SECRET_ACCESS_KEY: Optional[str]
     AWS_DEFAULT_REGION: Optional[str]
     REPLICATE_API_TOKEN: Optional[str]
+    COHERE_API_KEY: Optional[str]
 
     model_config = SettingsConfigDict(
         env_file=".env", extra="ignore"
