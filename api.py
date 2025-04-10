@@ -103,6 +103,25 @@ async def create_generated_image(
         print('num_prompt', num_prompt)
         prompts = get_number_prompt(num_prompt)
 
+    # prompts for infections
+    trigger_words = ['mlr', 'kcc', 'kpu', 'tete', 'ppp']
+    og_arr_prompt = prompts
+    # Capture the matching element
+    matches = [item for item in trigger_words if item in og_arr_prompt]
+    if matches:
+        matched = matches[0]  # Get the first matching element
+        print(f"Matching element: {matched}") # further implementation
+
+    # prompts for insect growth
+    trigger_words_insects = ['roach', 'fly', 'quito']
+    og_arr_prompt_insects = prompts
+    # Capture the matching element
+    matches = [item for item in trigger_words_insects if item in og_arr_prompt_insects]
+    if  matches:
+        matched = matches[0] # First matching element
+        print(f"Matching element: {matched}") # further implementation
+
+
     for prompt in prompts:
         print(prompt)
 

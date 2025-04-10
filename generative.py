@@ -29,11 +29,11 @@ SYSTEM_MESSAGE = (
 
 client = AsyncClient(api_key=COHERE_API_KEY)
 
-prompt = "Maada gesi"
+# prompt = "Mlo vyakula vya vitamini"
 
 async def generate_image_prompt(
-    # topic: str,
-    topic = prompt,
+    topic: str,
+  #  topic = prompt,
     messages=[]
 ) -> List[str]:
     try:
@@ -111,6 +111,9 @@ def get_number_prompt(number_str: str):
                 result.append(f"{digit} {color} {ball_word} horizontally aligned on a white background, the word \"{group}\" written in black at the very top of the image namba")
 
     return result
+
+def get_disease_prompt(disease_str: str):
+    pass
 
 if __name__ == "__main__":
     result = asyncio.run(generate_image_prompt())

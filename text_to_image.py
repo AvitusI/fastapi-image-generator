@@ -25,6 +25,8 @@ class TextToImage:
         match value:
             case 'miyafa':
                 return 'harnessing-ai-project/miyafa:005a9ecd039552ff2dcce950f926cd893ee028e4cfd67469a9cf94b37f8012b0'
+            case 'mlochakl':
+                return 'harnessing-ai-project/mlochkl:8553c1bf71aaeb2a525470679364d04a2296b94ab1bc0af17447387de1db6a2f'
             case 'kazaaf':
                 return 'harnessing-ai-project/kazaaf:6010b24abc582a3da48d64aadcdf377bc20158a92608b3141c3baa9c833b7765'
             case 'dmaa':
@@ -85,6 +87,36 @@ class TextToImage:
                 return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273380/money/10000-front_jqa3yd.jpg'
             case 'elfukumibk':
                 return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273380/money/10000-back_qnzcbp.jpg'
+
+            # disease urls
+            case 'ambkz':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1742506341/magonjwa/yakuambukizwa_mic6wj.png'
+            case 'dddd':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1742505530/magonjwa/yasiyoambukizwa_vertpd.png'
+            
+            # infections urls
+            case 'mlr':
+                return 'harnessing-ai-project/mamabi:1166cf4666f98af21099cdb6af43417f7dd1000e4e0f44baaa85d7ea539943e2'
+            case 'ppp':
+                return 'harnessing-ai-project/mamabi:1166cf4666f98af21099cdb6af43417f7dd1000e4e0f44baaa85d7ea539943e2'
+            case 'kcc':
+                return 'harnessing-ai-project/mamabi:1166cf4666f98af21099cdb6af43417f7dd1000e4e0f44baaa85d7ea539943e2'
+            case 'kpu':
+                return 'harnessing-ai-project/mamabi:1166cf4666f98af21099cdb6af43417f7dd1000e4e0f44baaa85d7ea539943e2'
+            case 'tete':
+                return 'harnessing-ai-project/mamabi:1166cf4666f98af21099cdb6af43417f7dd1000e4e0f44baaa85d7ea539943e2'
+            
+            # insect growth urls
+            case 'fly':
+                return 'harnessing-ai-project/wddnzi:776ff495be406c63ecc9b0defe55c4d6ff70ba2d7687679ac78caf9535b3ee83'
+            case 'quito':
+                return 'harnessing-ai-project/wddmbu:fe02248e96ee67b5c9bb80b2fe1b17576d597c8bfe01d961c0af8dbd527e3e1b'
+            case 'roach':
+                return ''
+            
+            # default url
+            case 'noop':
+                return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1743067327/no_image/no_image_k2qjla.png'
     
     def generate(
             self,
@@ -94,8 +126,10 @@ class TextToImage:
             num_steps = 80,
             callback: Callable[[int, int, Any], None] | None = None
     ) -> bytes | None:
-        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
+        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'mlochakl', 'ambkz', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
         words_in_prompt = [word.lower() for word in prompt.split()]
+
+        print('prompt', prompt)
 
         trigger_word = [word for word in trigger_words if word in words_in_prompt]
         print(trigger_word)
@@ -106,10 +140,15 @@ class TextToImage:
             img_model = "harnessing-ai-project/mwfz-flux:129947ef1820a641453ca09ff050cf832dac392737b3c9cae703bb18dfb846fa"
 
         money_words = ['hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk']
+        # also in "disease type" like in money, we return the image from the cloud
+        disease_words = ['ambkz', 'dddd']
+
+        # case for no image
+        no_image = ['noop']
 
         print('trigger_w', trigger_word)
 
-        if trigger_word[0] not in money_words:
+        if (trigger_word[0] not in money_words) and (trigger_word[0] not in disease_words) and (trigger_word[0] not in no_image):
           #  prompt = get_number_prompt(prompt) if (trigger_word[0] == "namba") else prompt
             print('prompt near replicate', prompt)
 
@@ -124,7 +163,18 @@ class TextToImage:
                 image_data = file_output.read()
 
                 return image_data
+            
         elif trigger_word[0] in money_words:
+            response = requests.get(img_model, stream=True)
+            img_data = response.content
+            return img_data
+        
+        elif trigger_word[0] in disease_words:
+            response = requests.get(img_model, stream=True)
+            img_data = response.content
+            return img_data
+        
+        elif trigger_word[0] in no_image:
             response = requests.get(img_model, stream=True)
             img_data = response.content
             return img_data
