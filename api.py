@@ -54,6 +54,7 @@ class ImageGenerationInput(BaseModel):
     prompt: str
     negative_prompt: str | None = Field(None)
     num_steps: int = Field(50, gt=0, le=50)
+    description_id: str = Field(None)
 
 class ImageGenerationOutput(BaseModel):
     task_id: UUID4 | str
@@ -92,6 +93,7 @@ async def create_generated_image(
 ):
     
     prompt = generated_image_create.model_dump().get("prompt")
+    description_id = generated_image_create.model_dump().get("description_id", None)
 
     prompts = await generate_image_prompt(prompt)
     print(prompts)
@@ -128,7 +130,7 @@ async def create_generated_image(
     image_results = []
 
     for prompt in prompts:
-        image = GeneratedImage(prompt=prompt, num_steps=50)
+        image = GeneratedImage(prompt=prompt, num_steps=50, description_id=description_id)
         session.add(image)
         await session.commit()
 

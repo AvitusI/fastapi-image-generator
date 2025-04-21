@@ -1,14 +1,19 @@
 from datetime import datetime
+from typing import Dict, Optional
 
 from pydantic import BaseModel, Field
 
+
+class MessageEvent(BaseModel):
+    message: str
+    description_id: Optional[str] = Field(None)
+
+
 class GeneratedImageBase(BaseModel):
     prompt: str
-    negative_prompt: str | None = None
-    num_steps: int = Field(50, gt=0, le=50)
-
-    class Config:
-        orm_mode = True
+    negative_prompt: Optional[str] = None
+    num_steps: int = 50
+    description_id: Optional[str] = None
 
 
 class GeneratedImageCreate(GeneratedImageBase):
@@ -17,13 +22,13 @@ class GeneratedImageCreate(GeneratedImageBase):
 
 class GeneratedImageRead(GeneratedImageBase):
     id: int
-    created_at: datetime
+    file_name: Optional[str] = None
     completed: bool
-    file_name: str | None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
 
 
 class GeneratedImageURL(BaseModel):
     url: str
-
-class MessageEvent(BaseModel):
-    message: str

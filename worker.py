@@ -5,6 +5,7 @@ import asyncio
 import requests
 import websockets
 import uuid
+import json
 
 import dramatiq
 from dramatiq.brokers.redis import RedisBroker
@@ -79,15 +80,20 @@ def update_file_name(image: GeneratedImage, file_name: str):
 
     asyncio.run(_update_file_name(image, file_name))
 
-def send_image_message(message: str):
-    async def _send_image_message(message: str):
+def send_image_message(message: str, description_id: str = None):
+    async def _send_image_message(message: str, description_id: str = None):
         # uri = "wss://https://fastapi-image-generator.onrender.com/ws"
         uri = "ws://localhost:8000/ws"
         async with websockets.connect(uri) as websocket:
-            await websocket.send(message)
+            # Create a JSON message with both the image URL and description_id
+            json_message = json.dumps({
+                "message": message,
+                "description_id": description_id
+            })
+            await websocket.send(json_message)
             print("Message sent from send image coroutine worker")
 
-    asyncio.run(_send_image_message(message))
+    asyncio.run(_send_image_message(message, description_id))
 
 
 @dramatiq.actor()
@@ -122,7 +128,11 @@ def text_to_image_task(image_id: int):
 
     requests.post(webhook_url, json=result)
 
-    send_image_message(f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}")
+    # Send the image URL with the description_id
+    send_image_message(
+        f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}", 
+        image.description_id
+    )
 
     # https://s3.us-west-2.amazonaws.com/avytechs.generated-images/b2eb116a-7d6d-4e03-91af-47b332792f97.jpg
 
