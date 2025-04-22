@@ -17,7 +17,7 @@ SYSTEM_MESSAGE = (
     prompt long and rich
 
     2. Afya (kazaaf), This topic is associated with hygiene. It is totally different from food topic above. Translate the user prompt to English and make it 
-    suitable for image generation. For example; "kazaaf a well swept and neat school compound". Make the prompt much longer.
+    suitable for image generation. For example; "kazaaf a well swept and neat school compound". Make the prompt much longer. Don't forget the word "kazaaf"
 
     3. Maada (dmaa), This topic talks about the states of matter. The three states are as follows in Swahili; 
     Yabisi(Solid), Kimiminika(Liquid), and Gesi(Gas). The user prompt will require image generation for one 

@@ -54,7 +54,7 @@ class ImageGenerationInput(BaseModel):
     prompt: str
     negative_prompt: str | None = Field(None)
     num_steps: int = Field(50, gt=0, le=50)
-    description_id: str = Field(None)
+    description_id: str | None = Field(None)
 
 class ImageGenerationOutput(BaseModel):
     task_id: UUID4 | str
@@ -64,6 +64,7 @@ app = FastAPI(lifespan=combined_lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
 )
