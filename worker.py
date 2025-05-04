@@ -130,7 +130,8 @@ def text_to_image_task(image_id: int):
 
     # Send the image URL with the description_id
     send_image_message(
-        f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}", 
+       # f"https://s3.us-west-2.amazonaws.com/avytechs.generated-images/{file_name}", 
+        f"https://avitus-web-storage.s3.us-east-1.amazonaws.com/{file_name}",
         image.description_id
     )
 
