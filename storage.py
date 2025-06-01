@@ -1,5 +1,6 @@
 import boto3
 import os
+import requests
 
 from config import BaseConfig
 
@@ -25,6 +26,13 @@ class Storage:
         )
 
         try:
+            # some models provide image url and not bytes
+            if isinstance(image_bytes, str) and image_bytes.startswith("http"):
+                # download the bytes
+                response = requests.get(image_bytes)
+                response.raise_for_status()  # Ensure download was successful
+                image_bytes = response.content
+
             # upload the bytes
             response = s3_client.put_object(
                 Bucket=storage_bucket,

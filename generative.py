@@ -29,11 +29,11 @@ SYSTEM_MESSAGE = (
 
 client = AsyncClient(api_key=COHERE_API_KEY)
 
-# prompt = "Mlo vyakula vya vitamini"
+# prompt = "Kuzidisha kuzidisha 56 na 7"
 
 async def generate_image_prompt(
-    topic: str,
-  #  topic = prompt,
+     topic: str,
+#    topic = prompt,
     messages=[]
 ) -> List[str]:
     try:

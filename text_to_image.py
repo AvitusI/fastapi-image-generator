@@ -114,6 +114,10 @@ class TextToImage:
             case 'roach':
                 return ''
             
+            # good for math
+            case 'zz':
+                return 'ideogram-ai/ideogram-v2a-turbo'
+            
             # default url
             case 'noop':
                 return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1743067327/no_image/no_image_k2qjla.png'
@@ -126,7 +130,7 @@ class TextToImage:
             num_steps = 80,
             callback: Callable[[int, int, Any], None] | None = None
     ) -> bytes | None:
-        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'mlochakl', 'ambkz', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
+        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'mlochakl', 'zz', 'ambkz', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
         words_in_prompt = [word.lower() for word in prompt.split()]
 
         print('prompt', prompt)
@@ -156,6 +160,13 @@ class TextToImage:
                 img_model,
                 input={"prompt": f"{prompt}"}
             )
+
+            print('checking output', output)
+            print('type', type(output))
+
+            # some models return this class containing image url instead of bytes
+            if isinstance(output, replicate.helpers.FileOutput):
+                return str(output)
 
             if isinstance(output, list) and len(output) > 0:
                 file_output = output[0]

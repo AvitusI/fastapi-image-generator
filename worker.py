@@ -100,14 +100,20 @@ def send_image_message(message: str, description_id: str = None):
 def text_to_image_task(image_id: int):
     image = get_image(image_id)
 
+    print('from dramatiq actor', image.prompt)
+
     image_bytes = text_to_image_middleware.text_to_image.generate(
         image.prompt,
         negative_prompt=image.negative_prompt,
         num_steps=image.num_steps
     )
 
+    print(image_bytes)
+
     if image_bytes is None:
         raise Exception("Image generaion failed")
+    
+    # some models return image url instead of bytes
 
     file_name = f"{uuid.uuid4()}.jpg"
 

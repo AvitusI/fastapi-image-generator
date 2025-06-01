@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from typing import List
 import pprint
 import re
+import redis
 
 from broadcaster import Broadcast
 from dramatiq import Message
@@ -41,6 +42,8 @@ async def lifespan(app: FastAPI):
 @contextlib.asynccontextmanager
 async def lifespan2(app: FastAPI):
     await broadcast.connect()
+    r = redis.from_url(settings.REDIS_URL)
+    r.flushdb()
     yield
     await broadcast.disconnect()
 

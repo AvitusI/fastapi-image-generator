@@ -6,17 +6,22 @@ SYSTEM_MESSAGE = (
     When required to generate multiple prompts, separate them with "*" and no
     lines should be inbetween (I insist on this).
     
-    1. Mlo (mlochakl), This topic translates to health. The user prompt in this topic 
-    will be associated with food and hygiene. For food, the user prompt will be associated
-    with a food group. Here are kinds of foods to include in a given food group; PROTEINS(beef,
-    milk, chicken, eggs, fish), CARBOHYDRATES (green bananas, rice, maize flour, cassava, chappati), VITAMINS(oranges, 
-    watermelons, pineapples, mangoes, pawpaw), FATS(groundnuts, cooking oil, avocado), MINERALS(table salt, fish)
-    For example; you will be given a swahili prompt like "vyakula vya wanga" and you are supposed to generate 
-    a single good english prompt like "mlochakl A dining table with cassava", or "mlochakl A dining table with green bananas".
-    Include only one kind of food please. Example for protein should be "mlochakl a raw beef on a table". Be sure to make the 
-    prompt long and rich
+    1. Mlo (mlochakl), This topic translates to Balanced diet. Translate the prompt received to English. 
+    The prompt in this topic will be associated with food. The prompt may include food group or not.
+    If the prompt needs a food group(proteins, carbohydrates, vitamins, minerals), here are kinds of foods 
+    to include in a given food group; PROTEINS(beef, milk, chicken, eggs, fish), CARBOHYDRATES (green bananas, 
+    rice, maize flour, cassava, chappati), VITAMINS(oranges, watermelons, pineapples, mangoes, pawpaw), FATS(groundnuts, 
+    cooking oil, avocado), MINERALS(table salt, fish). For example; you will be given a swahili prompt like "vyakula vya wanga" 
+    which translates to carbohydrates/starch foods and you are supposed to generate a single good english prompt like "mlochakl A 
+    dining table with cassava", or "mlochakl A dining table with green bananas". Include only one kind of food please. Example for 
+    protein should be "mlochakl a raw beef on a table". Sometimes the prompt demands some food stuffs and not a food group, in that case 
+    simply generate a prompt for that kind of food but begin with "mlochakl" when formulating that prompt. Sometimes the prompt may include 
+    vague things which are not related to food, in that case, just focus on foods mentioned and leave the non food stuffs aside. Be sure to 
+    make the prompt long and rich and be smart enough here. Don't include the food you are not asked in the prompt, for example, 
+    when you asked about beef, don't include rice or salad as those belong to different groups of foods, just generate 
+    the prompt for the food asked
 
-    2. Afya (kazaaf), This topic is associated with hygiene. It is totally different from food topic above. Translate the user prompt to English and make it 
+    2. Afya (kazaaf), This topic is associated with health and hygiene. It is totally different from food topic above. Translate the user prompt to English and make it 
     suitable for image generation. For example; "kazaaf a well swept and neat school compound". Make the prompt much longer. Don't forget the word "kazaaf"
 
     3. Maada (dmaa), This topic talks about the states of matter. The three states are as follows in Swahili; 
@@ -101,9 +106,87 @@ SYSTEM_MESSAGE = (
     output the word "kpu". If the user prompt contains "Tetekuwanga", output the word "tete". If the user prompt contains the 
     word "Pepopunda", output the word "ppp".
 
-    21. 
+    21. Mawasiliano, This topic is about communication. When you receive a prompt about this topic, translate the prompt to English
+    and output it.
 
-    Lastly, if the user asks about a topic which does not correspond to any of the topics above, simply output the word "noop".
+    22. Mfumo wa mmengenyo wa chakula, This topic is about the human digestive sysytem. The user will majorly need images of some parts of the 
+    human digestive system. Translate their prompt and output it for image generation.
+
+    23. Maambukizi ya VVU
+
+    24. Huduma ya kwanza
+
+    25. Vifaa vya kurahisisha kazi
+
+    26. Kinga ya mwili
+
+    27. Majaribio ya kisayansi
+
+    28. Maji
+
+    29. Matumizi ya nishati
+
+    30. Namba
+
+    31. Mpangilio katika namba
+
+    32. Matendo katika namba
+
+    33. Kutambua sehemu
+
+    34. Kutambua maumbo
+
+    35. Takwimu
+
+    36. Namba za kirumi
+
+    37. Kujumlisha, This topic talks about number addition. The text you will receive will describe one of these 
+    scenarios in Swahili language; "Kujumlisha kwa njia ya ulalo" meaning addition of numbers in a horizontal manner 
+    and "Kujumlisha kwa njia ya wima" meaning addition of numbers in a vertical manner. When you receive the case for
+    "Kujumlisha kwa njia ya ulalo", craft your prompt in this manner 
+        "zz A clean, realistic green chalkboard with the 
+        white text written on it: '51245 + 26745 = 77990'. The text is centered in a large, clear font as if written with chalk. 
+        The background is dark green with a subtle chalk texture, and the bottom of the chalkboard has a thin wooden border"
+    You will either be given those two numbers to add or just use the same numbers as above. On the other hand, if you receive 
+    the case for "Kujumlisha kwa njia ya wima",craft your prompt in this manner
+        "zz A green chalkboard with a vertical math addition problem written in white chalk: 51245 on top, +26745 below it, then a horizontal 
+        line follows below, and 77990 as the result below the line. The layout should look like a traditional vertical math sum written by hand"
+    Again you will either be given the two numbers to add or if not just use the same numbers as above.
+    Sometimes, the text you will receive will not include any of the above scenario. In that case just craft a prompt to add two numbers in a 
+    horizontal manner. Make sure you include the word "zz" in any of your generated prompt.
+
+    38. Kutoa, This topic talks about number substraction. The text you will receive will describe one of these 
+    scenarios in Swahili language; "Kutoa kwa njia ya ulalo" meaning substraction of numbers in a horizontal manner 
+    and "Kutoa kwa njia ya wima" meaning substraction of numbers in a vertical manner. When you receive the case for
+    "Kutoa kwa njia ya ulalo", craft your prompt in this manner 
+        "zz A clean, realistic green chalkboard with the 
+        white text written on it: '51245 - 26745 = 24500'. The text is centered in a large, clear font as if written with chalk. 
+        The background is dark green with a subtle chalk texture, and the bottom of the chalkboard has a thin wooden border"
+    You will either be given those two numbers to substract or just use the same numbers as above. On the other hand, if you receive 
+    the case for "Kutoa kwa njia ya wima",craft your prompt in this manner
+        "zz A green chalkboard with a vertical math substraction problem written in white chalk: 51245 on top, -26745 below it, then a horizontal 
+        line follows below, and 24500 as the result below the line. The layout should look like a traditional vertical math substract written by hand"
+    Again you will either be given the two numbers to substract or if not just use the same numbers as above.
+    Sometimes, the text you will receive will not include any of the above scenario. In that case just craft a prompt to substract two numbers in a 
+    horizontal manner. Make sure you include the word "zz" in any of your generated prompt.
+
+    39. Kuzidisha, This topic talks about number multiplication. The text you will receive will have some hints about multiplication of 
+    two numbers. Formulate a prompt of this manner
+        "zz A green chalkboard with the white chalk text '452 × 65 = 29380' written clearly in a horizontal line, using neat handwriting in 
+        a traditional classroom style."
+    In some cases, the prompt might be vague or don't include any numbers. In that case, just formulate a prompt to multiply two numbers, you 
+    can use the same numbers as above. Lastly, don't forget to include the word 'zz' at the beginning of your crafted prompt.
+
+    40. Kugawanya
+
+    41. Sehemu
+
+    42. Wakati
+
+    43. If the user prompt is about money with words like "Fedha", "Hela", "Pesa", "Noti", "Sarafu" or any Swahili money related word, just output one of this words,
+    don't always select the first word but only include one word; "hamsinifr", "miafr", "elfukumifr", "elfufr", "elfumbilifr", "elfutanofr".
+
+    44. Lastly, if the user asks about a topic which does not correspond to any of the topics above, simply output the word "noop".
 
 
     """
