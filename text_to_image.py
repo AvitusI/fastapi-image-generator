@@ -28,7 +28,8 @@ class TextToImage:
             case 'mlochakl':
                 return 'harnessing-ai-project/mlochkl:8553c1bf71aaeb2a525470679364d04a2296b94ab1bc0af17447387de1db6a2f'
             case 'kazaaf':
-                return 'harnessing-ai-project/kazaaf:6010b24abc582a3da48d64aadcdf377bc20158a92608b3141c3baa9c833b7765'
+                return 'black-forest-labs/flux-dev'
+              #  return 'harnessing-ai-project/kazaaf:6010b24abc582a3da48d64aadcdf377bc20158a92608b3141c3baa9c833b7765'
             case 'dmaa':
                 return 'harnessing-ai-project/dmaa:190146f38302eb47f038198782aa30352e60c58c7b2860ca3e02216557553bf5'
             case 'usakir': # roach
@@ -53,6 +54,10 @@ class TextToImage:
                 return 'harnessing-ai-project/umbomstat:ddcc3508c838ecc0f7d83848dafe979f9a216b1d4697c28638864faf9fcc2801'
             case 'umboptt':
                 return 'harnessing-ai-project/umboptt:98fc502472cf639fb8bb7743fd2fdf5664a4a4b329b25b744beb53e9219cf6d6'
+            case 'matumz':
+                return 'harnessing-ai-project/matumizi-nishati:41370a4f6638dc7ccd2dbb72c9e3485c88a60f2f8f01a05157179f95dc3818e2'
+            case 'kingamwl':
+                return 'harnessing-ai-project/kingamwili:1a6ebdd35cf31e9c2eb65e1e8e7662bc05873120895b36565f08d9692166929a'
 
             # money urls
             case 'hamsinifr':
@@ -130,7 +135,7 @@ class TextToImage:
             num_steps = 80,
             callback: Callable[[int, int, Any], None] | None = None
     ) -> bytes | None:
-        trigger_words = ['miyafa', 'kazaaf', 'mwfz', 'mlochakl', 'zz', 'ambkz', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
+        trigger_words = ['miyafa', 'kazaaf', 'mwfz','matumz', 'kingamwl', 'mlochakl', 'zz', 'ambkz', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
         words_in_prompt = [word.lower() for word in prompt.split()]
 
         print('prompt', prompt)

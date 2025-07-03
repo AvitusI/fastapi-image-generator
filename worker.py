@@ -141,6 +141,8 @@ def text_to_image_task(image_id: int):
         image.description_id
     )
 
+    print(f"https://avitus-web-storage.s3.us-east-1.amazonaws.com/{file_name}")
+
     # https://s3.us-west-2.amazonaws.com/avytechs.generated-images/b2eb116a-7d6d-4e03-91af-47b332792f97.jpg
 
 
