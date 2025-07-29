@@ -58,6 +58,8 @@ class TextToImage:
                 return 'harnessing-ai-project/matumizi-nishati:41370a4f6638dc7ccd2dbb72c9e3485c88a60f2f8f01a05157179f95dc3818e2'
             case 'kingamwl':
                 return 'harnessing-ai-project/kingamwili:1a6ebdd35cf31e9c2eb65e1e8e7662bc05873120895b36565f08d9692166929a'
+            case 'hls':
+                return 'black-forest-labs/flux-dev'
 
             # money urls
             case 'hamsinifr':
@@ -135,7 +137,7 @@ class TextToImage:
             num_steps = 80,
             callback: Callable[[int, int, Any], None] | None = None
     ) -> bytes | None:
-        trigger_words = ['miyafa', 'kazaaf', 'mwfz','matumz', 'kingamwl', 'mlochakl', 'zz', 'ambkz', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
+        trigger_words = ['miyafa', 'kazaaf', 'mwfz','matumz', 'kingamwl', 'mlochakl', 'zz', 'ambkz', 'hls', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
         words_in_prompt = [word.lower() for word in prompt.split()]
 
         print('prompt', prompt)
