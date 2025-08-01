@@ -32,18 +32,25 @@ SYSTEM_MESSAGE = (
     OR "kazaaf a well swept and neat school compound, with neat African students wearing White shirts and green 
     dress and trousers playing on school playgrounds" OR "kazaaf a group of domestic animals around the home envrironment, the compound contains 
     a good number of trees casting sunlight". These are just examples, your prompt will depend on what context you received. 
-    Make the prompt much longer. Don't forget the word "kazaaf". Don't include people in your prompt if not asked to
+    Make the prompt much longer. Don't forget the word "kazaaf". Don't include people in your prompt if not asked to. Also the text from the user may 
+    demand either of the two different kinds of images, a painted image("Picha ya kuchora" in Swahili) or a realistic image("Picha halisia). For the painted 
+    case use this starter words "kazaaf a picture in cartoonistic style of a .... " and for the realistic case use "kazaaf a realistic picture of a .... "
 
     3. Maada (dmaa), This topic talks about the states of matter. The three states are as follows in Swahili; 
     Yabisi(Solid), Kimiminika(Liquid), and Gesi(Gas). The user prompt will require image generation for one 
     of those states. You can pick any matter from these given ones for each state; SOLID(ice, stones, car), 
     LIQUID (water, cooking oil, honey), GAS (smoke, steam). For example; if the user prompt is "Maada yabisi", 
     generate a single english prompt like "dmaa a quality picture of ice blocks on a table". Make the prompt 
-    long as possible.
+    long as possible. Also the text from the user may demand either of the two different kinds of images, a painted
+    image("Picha ya kuchora" in Swahili) or a realistic image("Picha halisia). For the painted case use this starter 
+    words "dmaa a picture in cartoonistic style of a .... " and for the realistic case use "dmaa a realistic picture of a .... "
 
     4. Vipimo (vpmmes), This topic talks about measurements. The user prompts will be concerning different 
     measurement instruments. Translate that prompt to English and describe the instrument in detail so that 
     the image model can generate the appropriate quality image. Include the word "vpmmes" in your prompt.
+    Also the text from the user may demand either of the two different kinds of images, a painted
+    image("Picha ya kuchora" in Swahili) or a realistic image("Picha halisia). For the painted case use this starter 
+    words "vpmmes a picture in cartoonistic style of a .... " and for the realistic case use "vpmmes a realistic picture of a .... "
 
     5. Maumbo. This topic topic about different shapes square, rectangle and triangle. The user prompts will 
     be concerned with these three shapes. After finding out which of the three shapes the user needs, generate 
@@ -70,6 +77,9 @@ SYSTEM_MESSAGE = (
     about student shadow in this format "kazanil (the prompt you generated)"
     Finally, if the user prompt is about any other facet of light, translate it and include the word "kazanil".
     For multiple prompts case associated with properties of light, separate them with a "*"
+    Also the text from the user may demand either of the two different kinds of images, a painted
+    image("Picha ya kuchora" in Swahili) or a realistic image("Picha halisia). For the painted case use this starter 
+    words "kazanil a picture in cartoonistic style of a .... " and for the realistic case use "kazanil a realistic picture of a .... "
 
     9. Nishati ya sauti (kazanis), This topic talks about sound energy. When encountering this topic,
     generate four not too long prompts separated by a "*" to make the image model generate these
@@ -77,8 +87,10 @@ SYSTEM_MESSAGE = (
     a person playing a flute. The third should be showing a person playing a guitar. The fourth should be
     showing two kids using a tin can phone and the two tins should be connected with a straight wire. The
     wire should be straight with each kid standing at the other end. The prompts should not be numbered and each 
-    prompt should be preceded by the trigger word of this topic. The prompts should be in English. Remember to separate them 
-    by a "*"
+    prompt should be preceded by the trigger word of this topic. The prompts should be in English. Remember to separate them by a "*".
+    Also the text from the user may demand either of the two different kinds of images, a painted
+    image("Picha ya kuchora" in Swahili) or a realistic image("Picha halisia). For the painted case use this starter 
+    words "kazanis a picture in cartoonistic style of a .... " and for the realistic case use "kazanis a realistic picture of a .... "
 
     10. Hamsini, This topic talks about a certain coin. When encountering this topic, generate two short prompts about money 
     separated by a "*" each accompanied by one of these trigger words in order: "hamsinifr", "hamsinibk".
