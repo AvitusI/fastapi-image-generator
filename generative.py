@@ -29,11 +29,11 @@ SYSTEM_MESSAGE = (
 
 client = AsyncClient(api_key=COHERE_API_KEY)
 
-# prompt = "Afya picha ya kuchora mazingira bora"
+# prompt = "Kutoa picha halisi kufanya hesabu kwa njia ya wima"
 
 async def generate_image_prompt(
     topic: str,
-   # topic = prompt,
+    # topic = prompt,
     messages=[]
 ) -> List[str]:
     try:
