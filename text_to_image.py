@@ -62,7 +62,8 @@ class TextToImage:
                 return 'black-forest-labs/flux-dev'
             case 'mwsl':
                 return 'harnessing-ai-project/kazanis:b9ad953ec02ad90cdf8947ea6179779d3938e36a486c0a12512b948e55140843'
-            
+            case 'menyo':
+                return 'black-forest-labs/flux-dev'
 
             # money urls
             case 'hamsinifr':
@@ -97,6 +98,8 @@ class TextToImage:
                 return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273380/money/10000-front_jqa3yd.jpg'
             case 'elfukumibk':
                 return 'https://res.cloudinary.com/dlpbfst4n/image/upload/v1738273380/money/10000-back_qnzcbp.jpg'
+            case 'majsaya':
+                return 'harnessing-ai-project/majaribiosayansi:180ec1f334fe16af3975da4db99be522455111f0e72694115e8e41277a133257'
 
             # disease urls
             case 'ambkz':
@@ -142,7 +145,7 @@ class TextToImage:
             num_steps = 80,
             callback: Callable[[int, int, Any], None] | None = None
     ) -> bytes | None:
-        trigger_words = ['miyafa', 'kazaaf', 'mwfz','matumz', 'mwsl', 'mamabi','kingamwl', 'mlochakl', 'zz', 'ambkz', 'hls', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
+        trigger_words = ['miyafa', 'kazaaf', 'mwfz','matumz', 'menyo', 'mwsl', 'mamabi','kingamwl', 'mlochakl', 'zz', 'ambkz', 'hls', 'dddd', 'roach', 'quito', 'fly', 'mlr', 'ppp', 'kcc', 'kpu', 'tete', 'noop', 'dmaa', 'usakir', 'usakim', 'usakif', 'kazanil', 'kazanis', 'vpmmes', 'umbomrab', 'umbomstat', 'umboptt', 'hamsinifr', 'hamsinibk', 'miafr', 'miabk', 'miambilifr', 'miambilibk', 'miatanofr', 'miatanobk', 'elfufr', 'elfubk', 'elfumbilifr', 'elfumbilibk', 'elfutanofr', 'elfutanobk', 'elfukumifr', 'elfukumibk', 'namba']
         words_in_prompt = [word.lower() for word in prompt.split()]
 
         print('prompt', prompt)

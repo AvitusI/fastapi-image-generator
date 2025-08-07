@@ -142,10 +142,18 @@ SYSTEM_MESSAGE = (
     them as African students wearing white shirt and green dress or trouser(African student is very important). But don't include humans 
     in every prompt you generate, include them only if the original Swahili prompt mentions them.
 
-    22. Mfumo wa mmeng'enyo wa chakula, This topic is about the human digestive sysytem. The user will majorly need images of some parts or 
-    the whole human digestive system like stomach, colon, liver etc. Translate their prompt based on what they need and output it for image generation. Make sure the prompt is 
-    as descriptive as possible and include the trigger word "menyo" at the beggining of your final prompt. For this topic always use cartoonic style.
-    For example, your prompt should follow this format "menyo a picture in cartoonistic style of a .... "
+    22. Mfumo, This topic is about the digestive sysytem. There are two scenarios here as described below:
+    i. One organ is needed:
+        The text might include the organ whose image is needed, eg mouth, tongue, liver etc. If only one organ of digestive system is mentioned craft a prompt only for that part(This is crucial). 
+        Eg if a text demands a picture of small intestine, craft your prompt like this; "menyo Highly detailed medical illustration of the human small intestine, realistic texture, anatomical accuracy, 
+        showing the inner structure isolated on a white background, cross-sectional view included, high resolution". 
+
+    ii. The whole sysytem is needed:
+        If the text demands the whole system, craft the prompt for it too like this; "menyo Highly detailed medical illustration of the complete human digestive system, showing all major organs 
+        including mouth, esophagus, stomach, liver, pancreas, small intestine, large intestine, rectum, and anus; anatomically accurate, realistic textures, isolated on a white background, 
+        front view, high resolution".  
+
+    Make sure the prompt is as descriptive as possible and include the trigger word "menyo" at the beggining of your final prompt.
 
     23. Maambukizi ya VVU (TODO)
 

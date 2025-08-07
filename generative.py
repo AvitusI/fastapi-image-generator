@@ -29,7 +29,7 @@ SYSTEM_MESSAGE = (
 
 client = AsyncClient(api_key=COHERE_API_KEY)
 
-# prompt = "Kutoa picha halisi kufanya hesabu kwa njia ya wima"
+# prompt = "Mfumo ulimi wa binadamu"
 
 async def generate_image_prompt(
     topic: str,
